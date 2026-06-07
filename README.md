@@ -202,5 +202,3 @@ test_recommender.py    Standalone algorithm smoke test
 Parts of this project were developed with the assistance of Claude (Anthropic).
 Claude has been used to help with debugging files, and help setup the docker environment.
 All output has been gone through and edited by me.
-
-All AI-generated code was reviewed, tested, and integrated by the project author.
