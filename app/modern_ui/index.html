@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineRecommender</title>
+    <link rel="stylesheet" href="../../modern_ui/style.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <header>
+            <h1>Discovery</h1>
+            <span class="subtitle">Tell me what you're in the mood for.</span>
+        </header>
+
+        <main>
+            <form id="recommend-form">
+                <div class="input-box">
+                    <textarea 
+                        id="query" 
+                        placeholder="e.g., Mind-bending sci-fi with a dark tone, 90s vibe..." 
+                        rows="3"
+                    ></textarea>
+                    <button type="submit" id="generate-btn">Find Movies</button>
+                </div>
+
+                <!-- Quick Filters -->
+                <div class="chips">
+                    <span class="chip-label">Quick presets:</span>
+                    <button type="button" data-val="Mind-bending sci-fi thriller">Sci-Fi Thriller</button>
+                    <button type="button" data-val="Character-driven indie drama about loss">Indie Drama</button>
+                    <button type="button" data-val="Pulpy 70s action with a great soundtrack">70s Action</button>
+                    <button type="button" data-val="Atmospheric horror that leaves me thinking for days">Atmo Horror</button>
+                </div>
+
+                <!-- Loading Indicator -->
+                <div id="loading" class="hidden">
+                    <div class="spinner"></div>
+                    <span>Analyzing taste & searching database...</span>
+                </div>
+
+                <!-- Error Message -->
+                <div id="error-msg" class="hidden">Could not connect. Ensure your server is running.</div>
+
+                <!-- Results Grid -->
+                <section id="results-area" class="grid hidden">
+                    <!-- Cards injected here by JS -->
+                </section>
+            </form>
+        </main>
+
+        <footer>
+            Powered by local database & FastAPI.
+        </footer>
+    </div>
+
+    <script src="../../modern_ui/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineMatch — Movie Recommender</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <span class="brand">&#127916; CineMatch</span>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1 class="hero-title">Find your next<br><span class="accent">favorite film</span></h1>
+    <p class="hero-sub">
+      Tell us what you've loved watching and we'll find films
+      you're likely to enjoy next — powered by KNN similarity.
+    </p>
+  </section>
+
+  <div class="form-section">
+    <div class="form-card">
+      <form action="{{ url_for('ui.recommend') }}" method="POST">
+
+        <div class="field">
+          <label class="field-label" for="basis_ids">Movies you've enjoyed</label>
+          <p class="field-hint">Enter one or more titles separated by commas</p>
+          <input
+            id="basis_ids"
+            class="text-input"
+            type="text"
+            name="basis_ids"
+            placeholder="e.g. Inception, The Matrix, Interstellar"
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="genre_id">
+            Genre <span class="optional">optional</span>
+          </label>
+          <p class="field-hint">Limit results to a specific genre</p>
+          <div class="select-wrap">
+            <select id="genre_id" class="select-input" name="genre_id">
+              <option value="">Any genre</option>
+              {% for genre in genres %}
+              <option value="{{ genre.genre_id }}">{{ genre.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Get Recommendations &rarr;</button>
+      </form>
+    </div>
+
+    <div class="how-it-works">
+      <p class="how-title">How it works</p>
+
+      <div class="step">
+        <span class="step-num">01</span>
+        <div>
+          <strong>Enter films you love</strong>
+          <p>Type the titles of movies you've genuinely enjoyed. The more you add, the better.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">02</span>
+        <div>
+          <strong>KNN finds the pattern</strong>
+          <p>Our algorithm analyses genres, directors, cast and community viewing patterns to build a taste profile.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">03</span>
+        <div>
+          <strong>Discover what's next</strong>
+          <p>Get 10 ranked recommendations with a match score and genre breakdown.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

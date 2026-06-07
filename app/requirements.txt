@@ -1,0 +1,5 @@
+Flask == 3.0.3
+SQLAlchemy == 2.0.32
+psycopg[binary]>=3.2.10
+numpy >= 1.26
+werkzeug >= 3.0

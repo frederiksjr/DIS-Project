@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Recommendations — CineMatch</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="/" class="brand">&#127916; CineMatch</a>
+      <a href="/" class="back-link">&larr; New search</a>
+    </div>
+  </nav>
+
+  <main class="results-main">
+
+    <div class="results-header">
+      <h1>Your Recommendations</h1>
+      <p class="results-sub">
+        {% if results %}{{ results|length }} films matched to your taste{% endif %}
+      </p>
+    </div>
+
+    <div class="results-list">
+      {% if results %}
+        {% for item in results %}
+        <div class="result-card">
+
+          <div class="result-rank">{{ "%02d"|format(loop.index) }}</div>
+
+          <div class="result-body">
+            <div class="result-title-row">
+              <h2 class="result-title">{{ item.title }}</h2>
+              {% if item.year %}<span class="result-year">{{ item.year }}</span>{% endif %}
+            </div>
+
+            {% if item.genres %}
+            <div class="result-genres">
+              {% for g in item.genres %}<span class="genre-tag">{{ g }}</span>{% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="result-meta">
+              <span class="match-score">{{ item.match_pct }}% match</span>
+              {% if item.supporting_user_count > 0 %}
+              <span class="dot">&middot;</span>
+              <span>{{ item.supporting_user_count }} user{{ 's' if item.supporting_user_count != 1 }} agree</span>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+        {% endfor %}
+
+      {% else %}
+        <div class="empty-state">
+          <p>No recommendations found. Try different movies or remove the genre filter.</p>
+          <a href="/" class="empty-link">Try again</a>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if results %}
+    <div class="results-footer">
+      <a href="/" class="try-again-btn">Try a different search</a>
+    </div>
+    {% endif %}
+
+  </main>
+
+</body>
+</html>

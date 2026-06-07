@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: cinematch
+      POSTGRES_USER: cinematch
+      POSTGRES_PASSWORD: cinematch
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cinematch"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: postgresql+psycopg://cinematch:cinematch@db/cinematch
+    volumes:
+      - ./notes:/app/notes
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
