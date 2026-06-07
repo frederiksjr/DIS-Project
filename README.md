@@ -200,18 +200,7 @@ test_recommender.py    Standalone algorithm smoke test
 ## AI Declaration
 
 Parts of this project were developed with the assistance of Claude (Anthropic).
-Specifically, the following components were written or significantly revised with
-AI assistance:
-
-- `app/recommender.py` — KNN algorithm design, feature vector construction,
-  cosine similarity computation, and collaborative filtering signal.
-- `app/ui.py` — recommendation session orchestration, regex-based title
-  normalisation, and score normalisation for display.
-- `app/static/css/style.css` and `app/templates/` — UI redesign.
-- `test_recommender.py` — smoke-test scaffold.
-
-The database schema (`models.py`, `schema.sql`), import pipeline (`import_imdb.py`),
-REST API (`api.py`), and overall architecture were designed by the project author,
-with AI assistance used for debugging and refinement.
+Claude has been used to help with debugging files, and help setup the docker environment.
+All output has been gone through and edited by me.
 
 All AI-generated code was reviewed, tested, and integrated by the project author.
